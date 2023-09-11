@@ -1,9 +1,10 @@
 import random
 
-class Graph:
-    def __init__(self, num_nodes):
+class Graph():
+    def __init__(self, num_nodes, seed):
         self.num_nodes = num_nodes
         self.graph = {}
+        self.seed = seed
         
     def add_edge(self, u, v):
         if u in self.graph:
@@ -24,9 +25,10 @@ class Graph:
         return result
 
     def get_spanning_tree(self, start):
-        spanning_tree = Graph(self.num_nodes)
+        spanning_tree = Graph(self.num_nodes, self.seed)
         stack = []
         visited = [False]*self.num_nodes
+        random.seed(self.seed)
 
         visited[start] = True
         stack.append(start)
