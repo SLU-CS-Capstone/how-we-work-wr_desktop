@@ -1,0 +1,40 @@
+from graph import Graph
+
+class Maze:
+    def __init__(self, size):
+        self.size = size
+        self.nodes = []
+        self.graph = Graph(size*size)
+
+        # ... (rest of the constructor remains the same)
+
+    def generate_maze(self):
+        spanning_tree = self.graph.get_spanning_tree(0)
+        for i in range(0, self.graph.num_nodes):
+            for j in range(0, self.graph.num_nodes):
+                if spanning_tree.has_edge(i, j):
+                    self.graph.remove_edge(i, j)
+
+    def print(self, output_format='terminal'):
+        if output_format == 'text':
+            self.save_to_text_file()
+        else:
+            result = ' ' + ('_ ' * (self.size-1)) + '_\n'
+            # ... (rest of the print method remains the same)
+
+    def save_to_text_file(self):
+        with open('maze.txt', 'w') as file:
+            result = ' ' + ('_ ' * (self.size-1)) + '_\n'
+            for i in range(self.size):
+                result += '|'
+                # ... (rest of the code to build the maze structure)
+                result += '|\n'
+            file.write(result)
+
+if __name__ == "__main__":
+    size = int(input("Enter the size of the maze: "))
+    output_choice = input("Enter 'text' to save as text file or 'terminal' to display in the terminal: ")
+
+    maze = Maze(size)
+    maze.generate_maze()
+    maze.print(output_choice)
