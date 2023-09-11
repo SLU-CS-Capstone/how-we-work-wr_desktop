@@ -4,7 +4,7 @@ class Maze:
     def __init__(self, size):
         self.size = size
         self.nodes = []
-        self.graph = Graph(size*size)
+        self.graph = Graph(size*size, seed = 10)
 
         # label the nodes from 0 to (N*N)-1
         for i in range(0, self.size):
