@@ -1,6 +1,5 @@
 import random
 
-
 class Graph():
     def __init__(self, num_nodes, seed):
         self.num_nodes = num_nodes
@@ -29,6 +28,7 @@ class Graph():
         spanning_tree = Graph(self.num_nodes, self.seed)
         stack = []
         visited = [False]*self.num_nodes
+        random.seed(self.seed)
 
         visited[start] = True
         stack.append(start)
@@ -39,7 +39,6 @@ class Graph():
                 if not visited[next_node]:
                     unvisited_nodes.append(next_node)
             if unvisited_nodes:
-                random.seed(self.seed)
                 next_node = random.choice(unvisited_nodes)
                 stack.append(next_node)
                 visited[next_node] = True
